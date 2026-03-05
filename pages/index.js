@@ -1,5 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
+import styles from '../styles/Home.module.css'
 
 export async function getServerSideProps() {
   const post = [
@@ -17,12 +18,11 @@ export async function getServerSideProps() {
 
 export default function Home({ post }) {
   return (
-    <div>
-      <h1>PoryForum</h1>
-      <ul>
+    <div className={styles.main}>
+      <ul className={styles.postList}>
         {post.map(item => (
           <li key={item.id}>
-            <Link href={`/post/${item.id}`}>
+            <Link href={`/post/${item.id}`} className={styles.postLink}>
               <strong>{item.title}</strong>
             </Link>
             {" - "} di {item.author} - {item.votes} voti

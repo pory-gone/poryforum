@@ -3,8 +3,8 @@
   --gray-alpha-200: rgba(var(--gray-rgb), 0.08);
   --gray-alpha-100: rgba(var(--gray-rgb), 0.05);
 
-  --button-primary-hover: #383838;
-  --button-secondary-hover: #f2f2f2;
+  --button-primary-hover: #FF69B4;
+  --button-secondary-hover: #00FFFF;
 
   display: grid;
   grid-template-rows: 20px 1fr 20px;
@@ -22,18 +22,42 @@
     --gray-alpha-200: rgba(var(--gray-rgb), 0.145);
     --gray-alpha-100: rgba(var(--gray-rgb), 0.06);
 
-    --button-primary-hover: #ccc;
-    --button-secondary-hover: #1a1a1a;
+    --button-primary-hover: #FF69B4;
+    --button-secondary-hover: #00FFFF;
   }
 }
-
+.title {
+  text-align: center;
+  color: #ff69b4;
+  font-size: 48px;
+  line-height: 56px;
+  font-weight: 600;
+}
+.postList {
+  list-style: none;
+  padding: 0;
+}
 .main {
   display: flex;
   flex-direction: column;
   gap: 32px;
   grid-row-start: 2;
 }
-
+.postLink {
+  color: #00FFFF;
+  text-decoration: none;
+}
+.postLink:hover {
+  text-decoration: underline;
+  color: #FF69B4
+}
+.halftitle {
+  text-align: center;
+  color: #00ffff;
+  font-size: 28px;
+  line-height: 36px;
+  font-weight: 600;
+}
 .main ol {
   font-family: var(--font-geist-mono);
   padding-left: 0;
@@ -56,71 +80,9 @@
   font-weight: 600;
 }
 
-.ctas {
-  display: flex;
-  gap: 16px;
-}
-
-.ctas a {
-  appearance: none;
-  border-radius: 128px;
-  height: 48px;
-  padding: 0 20px;
-  border: none;
-  border: 1px solid transparent;
-  transition: background 0.2s, color 0.2s, border-color 0.2s;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 16px;
-  line-height: 20px;
-  font-weight: 500;
-}
-
-a.primary {
-  background: var(--foreground);
-  color: var(--background);
-  gap: 8px;
-}
-
-a.secondary {
-  border-color: var(--gray-alpha-200);
-  min-width: 180px;
-}
-
-.footer {
-  grid-row-start: 3;
-  display: flex;
-  gap: 24px;
-}
-
-.footer a {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.footer img {
-  flex-shrink: 0;
-}
-
 /* Enable hover only on non-touch devices */
 @media (hover: hover) and (pointer: fine) {
-  a.primary:hover {
-    background: var(--button-primary-hover);
-    border-color: transparent;
-  }
 
-  a.secondary:hover {
-    background: var(--button-secondary-hover);
-    border-color: transparent;
-  }
-
-  .footer a:hover {
-    text-decoration: underline;
-    text-underline-offset: 4px;
-  }
 }
 
 @media (max-width: 600px) {
@@ -135,26 +97,6 @@ a.secondary {
 
   .main ol {
     text-align: center;
-  }
-
-  .ctas {
-    flex-direction: column;
-  }
-
-  .ctas a {
-    font-size: 14px;
-    height: 40px;
-    padding: 0 16px;
-  }
-
-  a.secondary {
-    min-width: auto;
-  }
-
-  .footer {
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
   }
 }
 
