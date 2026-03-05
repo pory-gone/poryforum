@@ -1,14 +1,14 @@
 export async function getServerSideProps({ params }) {
     const { id } = params;
-    const post = {
-        id: Number(id),
-        title: `Post numero ${id}`,
-        body: "contenuto del post",
-        votes: 10,
-        author: "alice"
+    const res = await fetch(`http://localhost:3000/api/post?id=${id}`)
+    if (!res.ok) {
+      return {
+        notFound: true,
+      }
     }
+    const post = await res.json()
     return {
-        props: { post }
+      props: { post }
     }
 }
 export default function PostPage({ post }) {
