@@ -1,17 +1,18 @@
-const post = [
-  { id: 1, title: 'Primo post', content: 'Contenuto del primo post', votes: 42, author: 'Mario' },
-  { id: 2, title: 'Secondo post', content: 'Contenuto del secondo post', votes: 27, author: 'Luigi' },
-  { id: 3, title: 'Terzo post', content: 'Contenuto del terzo post', votes: 15, author: 'Peach' },
-]
-export default function handler(req, res) {
+import { PrismaClient } from '@prisma/client'
+const prisma = new PrismaClient()
+export default async function handler(req, res) {
   const { id } = req.query
   if (id) {
-    const post = post.find(p => p.id === Number(id))
+    const post = await prisma.post.findUnique({
+      where: { id: Number(id) }
+    })
     if (!post) {
-      return res.status(404).json({ error: 'Post is missing...' })
+      return res.status(404).json({ error: 'Post non trovato' })
     }
-    res.status(200).json(post)
-  } else {
-    res.status(200).json(post)
+    return res.status(200).json(post)
   }
+  const posts = await prisma.post.findMany({
+    orderBy: { votes: 'desc' }
+  })
+  res.status(200).json(posts)
 }
