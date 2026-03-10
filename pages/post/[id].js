@@ -17,7 +17,7 @@ export default function PostPage({ post }) {
       <h1>{post.title}</h1>
       <p>di <strong>{post.author}</strong> - {post.votes} voti</p>
       <hr />
-      <p>{post.body}</p>
+      <p>{post.content}</p>
     </div>
   )
 }
