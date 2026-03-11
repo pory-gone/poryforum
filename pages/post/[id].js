@@ -1,3 +1,5 @@
+import styles from '../../styles/Post.module.css'
+
 export async function getServerSideProps({ params }) {
     const { id } = params;
     const res = await fetch(`http://localhost:3000/api/post?id=${id}`)
@@ -13,11 +15,10 @@ export async function getServerSideProps({ params }) {
 }
 export default function PostPage({ post }) {
   return (
-    <div>
-      <h1>{post.title}</h1>
-      <p>di <strong>{post.author}</strong> - {post.votes} voti</p>
-      <hr />
-      <p>{post.content}</p>
+    <div className={styles.container}>
+      <h1 className={styles.title}>{post.title}</h1>
+      <p className={styles.meta}>di <strong>{post.author}</strong> - {post.votes} voti</p>
+      <p className={styles.body}>{post.content}</p>
     </div>
   )
 }
